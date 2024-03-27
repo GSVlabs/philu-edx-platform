@@ -8,6 +8,13 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 [Unreleased]
 ************
 
+Added
+=====
+
+* Hide Learn more and Share feedback links on the studio discussions info banner if the corresponding settings are empty `RGOeX-26488 <https://youtrack.raccoongang.com/issue/RGOeX-26488>`_
+
+  * Should be dropped when upstream PR (`master <https://github.com/openedx/edx-platform/pull/34432>`_, `quince <https://github.com/openedx/edx-platform/pull/34433>`_) will be merged
+
 [quince-rg.1] 2024-03-13
 ************************
 
