@@ -1063,8 +1063,9 @@ def remove_notifications_with_visibility_settings(expected_response):
     not_visible = get_notification_types_with_visibility_settings()
     for expected_response_app in expected_response['notification_preference_config']:
         for notification_type, visibility_settings in not_visible.items():
-            if notification_type in expected_response['notification_preference_config'][expected_response_app]['notification_types']:
-                    expected_response['notification_preference_config'][expected_response_app]['notification_types'].pop(
-                        notification_type
-                    )
+            types = expected_response['notification_preference_config'][expected_response_app]['notification_types']
+            if notification_type in types:
+                expected_response['notification_preference_config'][expected_response_app]['notification_types'].pop(
+                    notification_type
+                )
     return expected_response
