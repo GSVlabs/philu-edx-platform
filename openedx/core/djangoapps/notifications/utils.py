@@ -123,8 +123,8 @@ def filter_out_visible_notifications(
     :param user_course_roles: List of course roles for the user
     :return: Updated user preferences dictionary
     """
-    for user_preferences_app in user_preferences.values():
-        if 'notification_types' in user_preferences_app:
+    for user_preferences_app, app_config in user_preferences.items():
+        if 'notification_types' in app_config:
             # Iterate over the types to remove and pop them from the dictionary
             for notification_type, is_visible_to in notifications_with_visibility.items():
                 is_visible = False
@@ -134,9 +134,9 @@ def filter_out_visible_notifications(
                         break
                 if is_visible:
                     continue
-                if notification_type in user_preferences_app['notification_types']:
-                    user_preferences_app['notification_types'].pop(notification_type)
-        return user_preferences
+                if notification_type in user_preferences[user_preferences_app]['notification_types']:
+                    user_preferences[user_preferences_app]['notification_types'].pop(notification_type)
+    return user_preferences
 
 
 def remove_preferences_with_no_access(preferences: dict, user) -> dict:

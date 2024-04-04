@@ -133,7 +133,7 @@ COURSE_NOTIFICATION_TYPES = {
             'replier_name': 'replier name',
         },
         'email_template': '',
-        # 'visible_to': [FORUM_ROLE_ADMINISTRATOR, FORUM_ROLE_MODERATOR, FORUM_ROLE_COMMUNITY_TA]
+        'visible_to': [FORUM_ROLE_ADMINISTRATOR, FORUM_ROLE_MODERATOR, FORUM_ROLE_COMMUNITY_TA]
     },
     'response_endorsed_on_thread': {
         'notification_app': 'discussion',
@@ -196,7 +196,7 @@ COURSE_NOTIFICATION_TYPES = {
         },
         'email_template': '',
         'filters': [FILTER_AUDIT_EXPIRED_USERS_WITH_NO_ROLE],
-        'visible_to' : [CourseStaffRole.ROLE, CourseInstructorRole.ROLE]
+        'visible_to': [CourseStaffRole.ROLE, CourseInstructorRole.ROLE]
     },
 }
 
