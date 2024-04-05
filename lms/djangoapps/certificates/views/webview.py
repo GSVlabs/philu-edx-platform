@@ -464,9 +464,9 @@ def _update_organization_context(context, course):
         # TODO Need to add support for multiple organizations, Currently we are interested in the first one.
         organization = organizations[0]
         partner_long_name = organization.get('name', partner_long_name)
-        course_org_display = course_org_display if course_org_display else organization.get('short_name')
+        course_org_display = course_org_display or organization.get('short_name')
         organization_logo = organization.get('logo', None)
-    partner_short_name = course_org_display if course_org_display else course.org
+    partner_short_name = course_org_display or course.org
 
     context['organization_long_name'] = partner_long_name
     context['organization_short_name'] = partner_short_name
