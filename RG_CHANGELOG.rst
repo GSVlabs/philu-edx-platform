@@ -15,6 +15,13 @@ Added
 
   * Should be dropped when upstream PR (`master <https://github.com/openedx/edx-platform/pull/34432>`_, `quince <https://github.com/openedx/edx-platform/pull/34433>`_) will be merged
 
+Fixes
+=====
+
+* "Course organization display string" option in Advanced settings doesn't influence the certificate `RGOeX-26471 <https://youtrack.raccoongang.com/issue/RGOeX-26471>`_
+
+  * Should be dropped when upstream PR (`master <https://github.com/openedx/edx-platform/pull/34465>`_, `quince <https://github.com/openedx/edx-platform/pull/34466>`_) will be merged
+
 [quince-rg.1] 2024-03-13
 ************************
 
