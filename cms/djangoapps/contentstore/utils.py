@@ -2194,11 +2194,16 @@ class StudioPermissionsService:
         return has_studio_write_access(self._user, course_key)
 
 
-def track_course_update_event(course_key, user, event_data=None):
+def track_course_update_event(course_key, user, course_update_content=None):
     """
     Track course update event
     """
     event_name = 'edx.contentstore.course_update'
+    event_data = {}
+    html_content = html_to_text(event_data.get("content", ""))
+    str_content = re.sub(r"(\s|&nbsp;|//)+", " ", html_to_text(html_content))
+
+    event_data['content'] = str_content
     event_data['course_id'] = str(course_key)
     event_data['user_id'] = str(user.id)
     event_data['user_forums_roles'] = [
@@ -2207,6 +2212,7 @@ def track_course_update_event(course_key, user, event_data=None):
     event_data['user_course_roles'] = [
         role.role for role in user.courseaccessrole_set.filter(course_id=str(course_key))
     ]
+
     context = contexts.course_context_from_course_id(course_key)
     with tracker.get_tracker().context(event_name, context):
         tracker.emit(event_name, event_data)
