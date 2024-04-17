@@ -232,7 +232,7 @@ class TestOwnUsernameAPI(FilteredQueryCountMixin, CacheIsolationTestCase, UserAP
         Test that a client (logged in) can get her own username.
         """
         self.client.login(username=self.user.username, password=TEST_PASSWORD)
-        self._verify_get_own_username(19)
+        self._verify_get_own_username(18)
 
     def test_get_username_inactive(self):
         """
@@ -242,7 +242,7 @@ class TestOwnUsernameAPI(FilteredQueryCountMixin, CacheIsolationTestCase, UserAP
         self.client.login(username=self.user.username, password=TEST_PASSWORD)
         self.user.is_active = False
         self.user.save()
-        self._verify_get_own_username(19)
+        self._verify_get_own_username(18)
 
     def test_get_username_not_logged_in(self):
         """
@@ -251,7 +251,7 @@ class TestOwnUsernameAPI(FilteredQueryCountMixin, CacheIsolationTestCase, UserAP
         """
 
         # verify that the endpoint is inaccessible when not logged in
-        self._verify_get_own_username(12, expected_status=401)
+        self._verify_get_own_username(11, expected_status=401)
 
 
 @skip_unless_lms
