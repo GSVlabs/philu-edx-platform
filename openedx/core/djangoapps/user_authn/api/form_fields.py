@@ -5,6 +5,7 @@ import logging
 from django import forms
 from django.conf import settings
 from django.utils.translation import gettext as _
+from edx_django_utils.plugins import pluggable_override
 
 from common.djangoapps.student.models import UserProfile
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
@@ -173,6 +174,36 @@ def add_profession_field(is_field_required=False):
     return _add_field_with_configurable_select_options(
         'profession', profession_label, is_field_required, accounts.REQUIRED_FIELD_PROFESSION_TEXT_MSG,
     )
+
+
+@pluggable_override('OVERRIDE_ADD_ORG_TYPE_FIELD')
+def add_organization_type_field(is_field_required=False):
+    """
+    Returns the organization type field description.
+    
+    Stub function. Implementation in oex_plugin.
+    """
+    pass
+
+
+@pluggable_override('OVERRIDE_ADD_IS_ORG_REGISTERED_FIELD')
+def add_is_organization_registered_field(is_field_required=False):
+    """
+    Returns the is_organization_registered field description.
+    
+    Stub function. Implementation in oex_plugin.
+    """
+    pass
+
+
+@pluggable_override('OVERRIDE_ADD_ORG_SIZE_FIELD')
+def add_organization_size_field(is_field_required=False):
+    """
+    Returns the organization size field description.
+    
+    Stub function. Implementation in oex_plugin.
+    """
+    pass
 
 
 def add_specialty_field(is_field_required=False):
