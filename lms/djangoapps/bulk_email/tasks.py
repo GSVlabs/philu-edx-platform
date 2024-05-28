@@ -26,6 +26,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.translation import override as override_language
 from edx_django_utils.monitoring import set_code_owner_attribute
+from edx_django_utils.plugins import pluggable_override
 from markupsafe import escape
 
 from common.djangoapps.util.date_utils import get_default_time_display
@@ -416,7 +417,7 @@ def _get_source_address(course_id, course_title, course_language, truncate=True)
 
     return from_addr
 
-
+@pluggable_override('OVERRIDE_SEND_COURSE_EMAIL')
 def _send_course_email(entry_id, email_id, to_list, global_email_context, subtask_status):  # lint-amnesty, pylint: disable=too-many-statements
     """
     Performs the email sending task.
