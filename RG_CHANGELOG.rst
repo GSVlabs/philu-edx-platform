@@ -8,6 +8,11 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 [Unreleased]
 ************
 
+Added
+=====
+
+* Adaptation of backend for modified Welcome page `PhU-231 <https://youtrack.raccoongang.com/issue/PhU-231>`_
+
 [quince-rg.2] 2024-04-12
 ************************
 

@@ -4,6 +4,7 @@ Registration Fields View used by optional and required fields view.
 import copy
 
 from django.conf import settings
+from edx_django_utils.plugins import pluggable_override
 from rest_framework.views import APIView
 
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
@@ -37,6 +38,10 @@ class RegistrationFieldsContext(APIView):
         'profession',
         'specialty',
         'marketing_emails_opt_in',
+        # Enabling additional fields when registering a user
+        'organization_type',
+        'is_organization_registered',
+        'organization_size',
     ]
     user_profile_fields = [field.name for field in UserProfile._meta.get_fields()]
 
@@ -86,6 +91,7 @@ class RegistrationFieldsContext(APIView):
                 ):
                     self.valid_fields.append(field_name)
 
+    @pluggable_override('OVERRIDE_FIELD_CAN_BE_SAVED')
     def _field_can_be_saved(self, field):
         """
         Checks if the field exists in UserProfile Model fields or extended_profile configuration,

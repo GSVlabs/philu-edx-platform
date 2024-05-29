@@ -23,6 +23,7 @@ from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.views.decorators.debug import sensitive_post_parameters
 from django_countries import countries
 from edx_django_utils.monitoring import set_custom_attribute
+from edx_django_utils.plugins import pluggable_override
 from openedx_events.learning.data import UserData, UserPersonalData
 from openedx_events.learning.signals import STUDENT_REGISTRATION_COMPLETED
 from openedx_filters.learning.filters import StudentRegistrationRequested
@@ -660,6 +661,7 @@ class RegistrationView(APIView):
         if data.get("honor_code") and "terms_of_service" not in data:
             data["terms_of_service"] = data["honor_code"]
 
+    @pluggable_override('OVERRIDE_CREATE_ACCOUNT')
     def _create_account(self, request, data):
         response, user = None, None
         try:
