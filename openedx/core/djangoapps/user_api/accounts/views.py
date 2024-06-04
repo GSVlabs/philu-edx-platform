@@ -20,6 +20,7 @@ from django.db import transaction
 from django.utils.translation import gettext as _
 from edx_ace import ace
 from edx_ace.recipient import Recipient
+from edx_django_utils.plugins import pluggable_override
 from edx_rest_framework_extensions.auth.jwt.authentication import JwtAuthentication
 from openedx.core.lib.api.authentication import BearerAuthentication
 from edx_rest_framework_extensions.auth.session.authentication import SessionAuthenticationAllowInactiveUser
@@ -415,6 +416,7 @@ class AccountViewSet(ViewSet):
         data = UserSearchEmailSerializer(users, many=True).data
         return Response(data)
 
+    @pluggable_override('OVERRIDE_ACCOUNT_RETRIEVE')
     def retrieve(self, request, username):
         """
         GET /api/user/v1/accounts/{username}/
