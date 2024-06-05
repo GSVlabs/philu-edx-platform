@@ -11,6 +11,7 @@ from django.conf import settings
 from django.contrib.auth.models import User  # lint-amnesty, pylint: disable=imported-auth-user
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
+from edx_django_utils.plugins import pluggable_override
 from rest_framework import serializers
 
 
@@ -114,6 +115,7 @@ class UserReadOnlySerializer(serializers.Serializer):  # lint-amnesty, pylint: d
 
         super().__init__(*args, **kwargs)
 
+    @pluggable_override('OVERRIDE_TO_REPRESENTATION_USER_ACCOUNT')
     def to_representation(self, user):  # lint-amnesty, pylint: disable=arguments-differ
         """
         Overwrite to_native to handle custom logic since we are serializing three models as one here

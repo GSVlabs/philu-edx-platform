@@ -12,6 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import ValidationError, validate_email
 from django.utils.translation import override as override_language
 from django.utils.translation import gettext as _
+from edx_django_utils.plugins import pluggable_override
 from pytz import UTC
 from common.djangoapps.student import views as student_views
 from common.djangoapps.student.models import (
@@ -23,7 +24,6 @@ from common.djangoapps.student.models import (
 )
 from common.djangoapps.util.model_utils import emit_settings_changed_event
 from common.djangoapps.util.password_policy_validators import validate_password
-from edx_django_utils.plugins import pluggable_override  # lint-amnesty, pylint: disable=import-error
 from lms.djangoapps.certificates.api import get_certificates_for_user
 from lms.djangoapps.certificates.data import CertificateStatuses
 
@@ -106,6 +106,7 @@ def get_account_settings(request, usernames=None, configuration=None, view=None)
 
 
 @helpers.intercept_errors(errors.UserAPIInternalError, ignore_errors=[errors.UserAPIRequestError])
+@pluggable_override('OVERRIDE_UPDATE_ACCOUNT_SETTINGS')
 def update_account_settings(requesting_user, update, username=None):
     """Update user account information.
 
