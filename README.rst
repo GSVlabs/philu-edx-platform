@@ -1,3 +1,5 @@
+This repo is part of the philu set of repos, that create the philanthropyu.org website
+
 Open edX Platform
 #################
 | |License: AGPL v3| |Status| |Python CI|
